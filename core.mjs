@@ -1,6 +1,7 @@
 let crypto = null
 
 const offset = BigInt(8640000000000000)
+const maxValid = offset * 2n
 const intBytes = (bytes) => (
     (bytes[0] * 4294967296)
     + (bytes[1] * 16777216)
@@ -19,7 +20,11 @@ const formatBytes = (bytes) => {
 
     return `${a}${b}${c}`
 }
+const idRegex = /^[a-v0-9]{15}$/
 const genID = (id) => {
+    if (typeof id === "string" && idRegex.test(id) === true) {
+        return id
+    }
     if (id?.constructor === Uint8Array && id.length === 15) {
         return formatBytes(id)
     }
@@ -27,15 +32,36 @@ const genID = (id) => {
     crypto.getRandomValues(randomID)
     return formatBytes(randomID)
 }
-const genTime = (time) =>
-    (
-        BigInt(time ?? Date.now())
-        + offset
+const genTime = (time) => {
+    const source = (time ?? Date.now()).valueOf()
+    const valid = (
+        source.constructor === BigInt
+        || (
+            source.constructor === Number
+            && isNaN(source) === false
+        )
     )
-    .toString(32)
-    .padStart(11, "0")
-const asuid = (time = null, id = null) =>
-    `${genTime(time)}${genID(id)}`
+    if (valid === false) {
+        return { error: "Invalid timestamp" }
+    }
+    const timestamp = BigInt(source) + offset
+
+    if (timestamp < 0n || timestamp > maxValid) {
+        return { error: "timestamp out of valid range" }
+    }
+
+    return timestamp.toString(32).padStart(11, "0")
+}
+const asuid = (time = null, id = null) => {
+    const timePart = genTime(time)
+    const idPart = genID(id)
+
+    if (timePart.error !== undefined) {
+        return { error: [timePart.error] }
+    }
+
+    return `${timePart}${idPart}`
+}
 
 const alphabet = "0123456789abcdefghijklmnopqrstuv"
 const alphaMap = [...alphabet].reduce(
