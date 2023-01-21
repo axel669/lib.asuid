@@ -1,7 +1,9 @@
 # Almost Sortable Unique IDs
 Similar idea to the ksuid, but uses a larger timestamp for millisecond
 resolution. Copy-paste friendly, 35 chars long, and lexicographical sorting of
-the ids will sort them by time.
+the ids will sort them by time, but if multiple asuids are generated in the
+same millisecond (or using the same timestamp) then the random bytes will
+prevent ordering them in perfect generated order (hence, almost sortable).
 
 ## Format
 ```
