@@ -7,11 +7,11 @@ prevent ordering them in perfect generated order (hence, almost sortable).
 
 ## Format
 ```
-| 56 bit timestamp | 120 bit random values |
+| 56 bit timestamp | 120 bit id |
 ```
 The 56 bit timestamp allows for values in the range
 [-8640000000000000, 8640000000000000] with millisecond precision. This allows
-any valid JS date to become a valid asuid, including dates in the passed (for
+any valid JS date to become a valid asuid, including dates in the past (for
 assigning ids to older records).
 
 ## Installation
@@ -23,7 +23,7 @@ pnpm add @labyrinthos/asuid
 ```js
 import asuid from "@labyrinthos/asuid"
 
-//  generate fully random id
+//  generate fully random asuid
 asuid()
 
 //  generate random id for a timestamp (or date)
