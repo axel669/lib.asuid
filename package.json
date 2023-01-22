@@ -1,6 +1,6 @@
 {
   "name": "@labyrinthos/asuid",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "main": "node.mjs",
   "scripts": {
@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/axel669/lib.asuid#readme",
   "exports": {
-    "browser": "browser.mjs"
+    ".": "./node.mjs",
+    "./browser": "./browser.mjs"
   },
   "dependencies": {
     "@axel669/aegis": "^0.2.7"
