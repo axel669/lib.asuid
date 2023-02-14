@@ -1,4 +1,4 @@
-import asuid from "../node.mjs"
+import asuid from "../core.mjs"
 
 export const test = async ({Section, Assert}) => {
     const baseTime = Date.now()
