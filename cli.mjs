@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-import asuid from "./node.mjs"
+import asuid from "./core.mjs"
 
 const count = parseInt(process.argv[2] ?? "1")
 

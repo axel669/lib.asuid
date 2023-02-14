@@ -1,8 +1,8 @@
 {
   "name": "@labyrinthos/asuid",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "",
-  "main": "node.mjs",
+  "main": "core.mjs",
   "scripts": {
     "test": "aegis tests/**/*.test.mjs"
   },
@@ -19,11 +19,11 @@
     "url": "https://github.com/axel669/lib.asuid/issues"
   },
   "homepage": "https://github.com/axel669/lib.asuid#readme",
-  "exports": {
-    ".": "./node.mjs",
-    "./browser": "./browser.mjs"
-  },
   "dependencies": {
     "@axel669/aegis": "^0.2.7"
-  }
+  },
+  "files": [
+    "core.mjs",
+    "cli.mjs"
+  ]
 }

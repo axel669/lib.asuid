@@ -1,4 +1,8 @@
-let crypto = null
+// let crypto = null
+const crypto =
+    (typeof window !== "undefined")
+    ? window.crypto
+    : (await import("node:crypto")).default
 
 const offset = BigInt(8640000000000000)
 const maxValid = offset * 2n
@@ -93,5 +97,5 @@ const parse = (asuid) => {
 
 asuid.parse = parse
 
-export const init = (crypt) => crypto = crypt
+// export const init = (crypt) => crypto = crypt
 export default asuid
