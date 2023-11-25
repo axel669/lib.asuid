@@ -1,13 +1,16 @@
 {
-  "name": "@labyrinthos/asuid",
-  "version": "0.2.0",
+  "name": "@axel669/asuid",
+  "version": "0.2.1",
   "description": "",
-  "main": "core.mjs",
+  "type": "module",
+  "main": "dist/node.js",
   "scripts": {
-    "test": "aegis tests/**/*.test.mjs"
+    "test": "aegis tests/**/*.test.js",
+    "build": "rollup -c config/rollup.config.js",
+    "mkdocs": "ipsen"
   },
   "bin": {
-    "asuid": "cli.mjs"
+    "asuid": "cli.js"
   },
   "repository": {
     "type": "git",
@@ -19,11 +22,17 @@
     "url": "https://github.com/axel669/lib.asuid/issues"
   },
   "homepage": "https://github.com/axel669/lib.asuid#readme",
-  "dependencies": {
-    "@axel669/aegis": "^0.2.7"
-  },
   "files": [
-    "core.mjs",
-    "cli.mjs"
-  ]
+    "cli.js",
+    "dist/"
+  ],
+  "devDependencies": {
+    "@axel669/aegis": "^0.2.7",
+    "@axel669/ipsen": "0.4.0-beta.3",
+    "rollup": "^4.5.2"
+  },
+  "exports": {
+    ".": "./dist/browser.js",
+    "./node": "./dist/node.js"
+  }
 }
