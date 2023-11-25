@@ -1,6 +1,7 @@
 source: site.md
 dest: site
-parsers: {}
-template: "@basic"
+parsers:
+  json: "@json"
+template: custom
 options:
   theme: tron

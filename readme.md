@@ -5,24 +5,7 @@ the ids will sort them by time, but if multiple asuids are generated in the
 same millisecond (or using the same timestamp) then the random bytes will
 prevent ordering them in perfect generated order (hence, almost sortable).
 
-<div class="demo-area"></div>
-<script type="module">
-    setTimeout(
-        async () => {
-            const asuid = (await import("https://esm.sh/@axel669/asuid@0.2.1")).default
-            const demoArea = document.querySelector(".demo-area")
-            demoArea.innerHTML = `
-                <button ws-x="@fill $color[primary]">Generate</button>
-                <div>Generate an ASUID</div>
-            `
-            const resultArea = demoArea.querySelector("div")
-            demoArea.querySelector("button").addEventListener(
-                "click",
-                () => resultArea.innerText = asuid()
-            )
-        }
-    )
-</script>
+[:package.json : demo.html]: #
 
 ## Format
 

@@ -1,0 +1,20 @@
+<div class="demo-area"></div>
+<script type="module">
+    setTimeout(
+        async () => {
+            const asuid = (await import("https://esm.sh/@axel669/asuid@0.2.1")).default
+            const demoArea = document.querySelector(".demo-area")
+            demoArea.innerHTML = `
+                <ws-flex ws-x="b[1px_solid_var(--primary)] fl-cr-a[start] r[4px]">
+                    <button ws-x="@fill $color[primary]">Generate</button>
+                    <div>Generate an ASUID</div>
+                </ws-flex>
+            `
+            const resultArea = demoArea.querySelector("div")
+            demoArea.querySelector("button").addEventListener(
+                "click",
+                () => resultArea.innerText = asuid()
+            )
+        }
+    )
+</script>
