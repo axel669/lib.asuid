@@ -5,7 +5,7 @@ the ids will sort them by time, but if multiple asuids are generated in the
 same millisecond (or using the same timestamp) then the random bytes will
 prevent ordering them in perfect generated order (hence, almost sortable).
 
-[:package.json : demo.html]: #
+[version : package.json : demo.html]: #
 
 ## Format
 
@@ -17,6 +17,13 @@ any valid JS date can become a valid asuid, including dates in the past (for
 assigning ids to older records).
 
 ## Installation
+
+### Browser
+```html
+<script src="https://cdn.jsdelivr.net/npm/@axel669/asuid@0.2.1/dist/browser.cjs"></script>
+```
+
+### Node
 ```bash
 npm add @labyrinthos/asuid
 ```
