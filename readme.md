@@ -5,24 +5,55 @@ the ids will sort them by time, but if multiple asuids are generated in the
 same millisecond (or using the same timestamp) then the random bytes will
 prevent ordering them in perfect generated order (hence, almost sortable).
 
+<div class="demo-area"></div>
+<script type="module">
+    setTimeout(
+        async () => {
+            const asuid = (await import("https://esm.sh/@axel669/asuid@0.2.1")).default
+            const demoArea = document.querySelector(".demo-area")
+            demoArea.innerHTML = `
+                <button ws-x="@fill $color[primary]">Generate</button>
+                <div>Generate an ASUID</div>
+            `
+            const resultArea = demoArea.querySelector("div")
+            demoArea.querySelector("button").addEventListener(
+                "click",
+                () => resultArea.innerText = asuid()
+            )
+        }
+    )
+</script>
+
 ## Format
-```
-| 56 bit timestamp | 120 bit id |
-```
+
+`| 56 bit timestamp | 120 bit id |`
+
 The 56 bit timestamp allows for values in the range
-[-8640000000000000, 8640000000000000] with millisecond precision. This allows
-any valid JS date to become a valid asuid, including dates in the past (for
+[-8640000000000000, 8640000000000000] with millisecond precision. This means
+any valid JS date can become a valid asuid, including dates in the past (for
 assigning ids to older records).
 
 ## Installation
 ```bash
-pnpm add @labyrinthos/asuid
+npm add @labyrinthos/asuid
 ```
 
 ## Usage
-```js
-import asuid from "@labyrinthos/asuid"
 
+### Imports
+
+Beacuse this library uses the js cryptography api, there is a different import
+for node vs non-node envs.
+
+```js
+// browser/cloudflare workers
+import asuid from "@labyrinthos/asuid"
+// node
+import asuid from "@labyrinthos/asuid/node"
+```
+
+### Generate
+```js
 //  generate fully random asuid
 asuid()
 
@@ -40,7 +71,7 @@ asuid(timeStamp, uint8Array)
 asuid(timeStamp, idString)
 ```
 
-## Parsing
+### Parse
 ```js
 import asuid from "@labyrinthos/asuid"
 

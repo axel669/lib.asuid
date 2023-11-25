@@ -1,0 +1,6 @@
+source: site.md
+dest: site
+parsers: {}
+template: "@basic"
+options:
+  theme: tron

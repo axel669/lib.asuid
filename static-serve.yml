@@ -1,4 +1,6 @@
 port: 45067
 sources:
 - dir: tests/browser
-- dir: "."
+- dir: "dist"
+- route: /docs
+  dir: site
